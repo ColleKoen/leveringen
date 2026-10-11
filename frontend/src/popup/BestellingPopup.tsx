@@ -185,7 +185,7 @@ export default function BestellingPopup({ bestelling, onClose, onApplied }: Prop
               <div className="bestelling-popup-info-value">{bestelling.leverancier}</div>
 
               <div></div>
-              <div className="bestelling-popup-info-value">{bestelling.bestelLijnenId}</div>
+              <div></div>
 
             </div>
 
@@ -274,17 +274,25 @@ export default function BestellingPopup({ bestelling, onClose, onApplied }: Prop
 
             )}
 
-            {/* Knoppen */}
+            {/* Onderste rij */}
             {!loading && !error && (
-              <div className="bestelling-popup-actions">
+              <div className="bestelling-popup-footer">
 
-                <button type="button" onClick={handleApply}>
-                  Toepassen
-                </button>
+                <div className="bestelling-popup-id">
+                  {bestelling.bestelLijnenId}
+                </div>
 
-                <button type="button" onClick={onClose}>
-                  Annuleren
-                </button>
+                <div className="bestelling-popup-actions">
+
+                  <button type="button" onClick={handleApply}>
+                    Toepassen
+                  </button>
+
+                  <button type="button" onClick={onClose}>
+                    Annuleren
+                  </button>
+
+                </div>
 
               </div>
             )}

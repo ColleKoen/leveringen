@@ -253,14 +253,28 @@
 }
 
 
+/* Onderste rij */
+
+.bestelling-popup-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 16px;
+}
+
+.bestelling-popup-id {
+  color: #b5b5b5;
+  font-size: 12px;
+  padding-left: 4px;
+}
+
 /* Onderste knoppen */
 
 .bestelling-popup-actions {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-
-  margin-top: 16px;
 }
 
 .bestelling-popup-actions button {
