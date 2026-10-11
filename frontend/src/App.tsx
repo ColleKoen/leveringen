@@ -7,8 +7,8 @@ import {
 
 import { API_URL } from './config';
 
-import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
+import BestellijstPage from './pages/BestellijstPage';
 
 
 function App() {
@@ -100,7 +100,7 @@ function App() {
 
   // Ingelogd.
   return (
-    <HomePage
+    <BestellijstPage
       onLogout={() => setLoggedIn(false)}
     />
   );

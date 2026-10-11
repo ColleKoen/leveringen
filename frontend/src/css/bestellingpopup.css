@@ -1,0 +1,291 @@
+/* frontend/src/css/bestellingpopup.css */
+
+.bestelling-popup-overlay {
+  position: fixed;
+  inset: 0;
+
+  z-index: 1000;
+
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+
+/* Popup */
+
+.bestelling-popup {
+  position: fixed;
+
+  width: 700px;
+
+  background-color: white;
+
+  border: 1px solid #999;
+  border-radius: 6px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  max-height: calc(100vh - 40px);
+
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+}
+
+
+/* Titelbalk */
+
+.bestelling-popup-header {
+  height: 36px;
+  min-height: 36px;
+
+  padding: 0 8px 0 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+
+  cursor: grab;
+  user-select: none;
+
+  background: #9c1c3d;
+  color: white;
+}
+
+.bestelling-popup-header:active {
+  cursor: grabbing;
+}
+
+.bestelling-popup-title {
+  font-weight: 500;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+/* Sluiten */
+
+.bestelling-popup-close {
+  width: 28px;
+  height: 28px;
+
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  background: transparent;
+
+  color: white;
+  font-size: 18px;
+
+  cursor: pointer;
+}
+
+
+/* Inhoud */
+
+.bestelling-popup-content {
+  padding: 18px 20px 16px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  font-size: 14px;
+}
+
+/* Dossier */
+
+.bestelling-popup-dossier {
+  align-items: center;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+
+/* Bestelling informatie */
+
+.bestelling-popup-info {
+  display: grid;
+  font-size: 16px;
+  grid-template-columns: auto 1fr auto auto;
+
+  row-gap: 8px;
+
+  align-items: center;
+
+  margin-bottom: 14px;
+  padding: 6px 8px;
+  background-color: #eee;
+  border-radius: 6px;
+}
+
+
+/* Kolom 1 en 3: labels rechts uitlijnen. */
+
+.bestelling-popup-info-label {
+  text-align: right;
+
+  padding-right: 6px;
+
+  white-space: nowrap;
+}
+
+
+/* Kolom 2 en 4: gegevens links uitlijnen. */
+
+.bestelling-popup-info-value {
+  text-align: left;
+  min-width: 0;
+}
+
+/* Laatste kolom volledig rechts uitlijnen. */
+.bestelling-popup-info> :nth-child(4) {
+  text-align: right;
+}
+
+
+/* Volledig geleverd */
+
+.bestelling-popup-volledig {
+  display: grid;
+  grid-template-columns: 1fr 70px;
+
+  align-items: center;
+
+  margin: 4px 0 12px 0;
+}
+
+.bestelling-popup-volledig-label {
+  text-align: right;
+  font-size: 16px;
+  padding-right: 0px;
+}
+
+.bestelling-popup-volledig-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bestelling-popup-volledig-checkbox input {
+  width: 22px;
+  height: 22px;
+  margin: 0;
+}
+
+/* Scrollbaar gedeelte met bestellijnen. */
+
+.bestelling-popup-table-wrapper {
+  max-height: 450px;
+  overflow-y: auto;
+}
+
+/* Tabel */
+
+.bestelling-popup-table {
+  width: 100%;
+
+  border-collapse: collapse;
+  table-layout: fixed;
+
+  font-size: 14px;
+}
+
+.bestelling-popup-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+
+  padding: 5px 8px;
+
+  background-color: #eee;
+
+  border-bottom: 3px solid #aaa;
+
+  text-align: left;
+  font-weight: 500;
+}
+
+.bestelling-popup-table td {
+  height: 30px;
+
+  padding: 4px 8px;
+
+  box-sizing: border-box;
+
+  border-bottom: 1px solid #d0d0d0;
+}
+
+.bestelling-popup-table tbody tr:nth-child(even) {
+  background-color: #f7f7f8;
+}
+
+
+/* Aantal */
+
+.bestelling-popup-table th:nth-child(2),
+.bestelling-popup-aantal {
+  text-align: center;
+}
+
+
+/* Geleverd */
+
+.bestelling-popup-table th:nth-child(3),
+.bestelling-popup-geleverd {
+  text-align: center;
+}
+
+.bestelling-popup-geleverd input {
+  width: 16px;
+  height: 16px;
+
+  margin: 0;
+
+  vertical-align: middle;
+}
+
+
+/* Onderste knoppen */
+
+.bestelling-popup-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+
+  margin-top: 16px;
+}
+
+.bestelling-popup-actions button {
+  min-width: 90px;
+  height: 30px;
+
+  padding: 0 14px;
+
+  border: 1px solid #aaa;
+  border-radius: 4px;
+
+  background-color: #f5f5f5;
+
+  cursor: pointer;
+}
+
+.bestelling-popup-actions button:hover {
+  background-color: #e9e9e9;
+}
+
+
+/* Meldingen */
+
+.bestelling-popup-message {
+  padding: 20px 0;
+
+  text-align: center;
+}

@@ -7,7 +7,11 @@ import authRouter from './routes/auth';
 import pingRouter from './routes/ping';
 import logoutRouter from './routes/logout';
 import futureRouter from './routes/future';
+import updateRoutes from './routes/update';
 import sessionRouter from './routes/session';
+
+import bestellijnRouter from './routes/bestellijn';
+import bestellijstRouter from './routes/bestellijst';
 
 dotenv.config();
 
@@ -23,9 +27,10 @@ app.use('/api/auth', authRouter);
 app.use('/api/ping', pingRouter);
 app.use('/api/logout', logoutRouter);
 app.use('/api/future', futureRouter);
+app.use('/api/update', updateRoutes);
 app.use('/api/session', sessionRouter);
+app.use('/api/bestellijn', bestellijnRouter);
+app.use('/api/bestellijst', bestellijstRouter);
 
 // Server starten.
-app.listen(PORT, () => {
-  console.log(`Backend actief op http://localhost:${PORT}`);
-});
+app.listen(PORT, () => { console.log(`Backend actief op http://localhost:${PORT}`); });

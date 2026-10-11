@@ -1,0 +1,283 @@
+/* frontend/src/css/bestellijstpage.css */
+
+.bestellijst-page {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  box-sizing: border-box;
+
+  font-size: 15px;
+}
+
+.bestellijst-page h1 {
+  margin: 0 0 20px 0;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.bestellijst-header {
+  width: 100%;
+
+  position: sticky;
+  top: 0;
+  z-index: 20;
+
+  background: white;
+}
+
+
+/* Rij 1 */
+
+.bestellijst-header-row1 {
+  display: grid;
+  grid-template-columns: 37% 22% 13% 10% 18%;
+
+  align-items: center;
+  height: 50px;
+
+  background-color: white;
+}
+
+.bestellijst-header-logo {
+  display: flex;
+  align-items: center;
+}
+
+.bestellijst-header-logo img {
+  display: block;
+  height: 40px;
+  width: auto;
+}
+
+.bestellijst-header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 6px;
+}
+
+.bestellijst-header-actions button {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.bestellijst-header-actions img {
+  width: 24px;
+  height: 24px;
+}
+
+/* Rij 2 */
+
+.bestellijst-header-row2 {
+  display: grid;
+  grid-template-columns: 39% 22% 11% 10% 18%;
+
+  align-items: center;
+  height: 32px;
+
+  background-color: white;
+}
+
+.bestellijst-header-row2>div {
+  padding: 8px 10px;
+  box-sizing: border-box;
+}
+
+.bestellijst-filter {
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.bestellijst-filter input {
+  width: 100%;
+  height: 32px;
+  padding: 0 10px;
+  box-sizing: border-box;
+
+  font-size: 16px;
+}
+
+.bestellijst-status-filter {
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.bestellijst-status-filter select {
+  width: 100%;
+  height: 32px;
+  padding: 0 10px;
+  box-sizing: border-box;
+
+  font-size: 16px;
+}
+
+/* Status en Levering in filterrij centreren. */
+.bestellijst-header-row2>div:nth-child(3),
+.bestellijst-header-row2>div:nth-child(4) {
+  text-align: center;
+}
+
+/* Tabel */
+.bestellijst-table {
+  width: 100%;
+  table-layout: fixed;
+
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/* Algemene tabelcellen. */
+.bestellijst-table th,
+.bestellijst-table td {
+  border: none;
+  border-bottom: 1px solid #c5c5c5;
+  text-align: left;
+}
+
+/* Sticky titelrij tabel. */
+.bestellijst-table thead th {
+  position: sticky;
+  top: 82px;
+  z-index: 10;
+
+  padding: 12px 10px;
+
+  background-color: white;
+  font-weight: 500;
+
+  border-bottom: 3px solid #aaa;
+}
+
+/* Titelrij: Dossier, Leverancier en Besteld door. */
+.bestellijst-table thead th:nth-child(1),
+.bestellijst-table thead th:nth-child(2),
+.bestellijst-table thead th:nth-child(5) {
+  padding: 4px 20px;
+}
+
+/* Tabelrecords. */
+.bestellijst-table tbody tr {
+  height: 46px;
+}
+
+.bestellijst-table tbody td {
+  height: 46px;
+  padding: 0 10px;
+
+  line-height: normal;
+  vertical-align: middle;
+  box-sizing: border-box;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Records: Dossier, Leverancier en Besteld door. */
+.bestellijst-table tbody td:nth-child(1),
+.bestellijst-table tbody td:nth-child(2),
+.bestellijst-table tbody td:nth-child(5) {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Statusknop. */
+.bestellijst-status-button {
+  width: 100%;
+  height: 30px;
+
+  padding: 0 8px;
+
+  border: 1px solid #c5c5c5;
+  border-radius: 4px;
+
+  background-color: #f1edf3;
+
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Status en datum centreren. */
+.bestellijst-table th:nth-child(3),
+.bestellijst-table td:nth-child(3),
+.bestellijst-table th:nth-child(4),
+.bestellijst-table td:nth-child(4) {
+  text-align: center;
+}
+
+/* Afwisselende kleuren tabelrijen. */
+.bestellijst-table tbody tr:nth-child(odd) {
+  background-color: #edf4ef;
+}
+
+.bestellijst-table tbody tr:nth-child(even) {
+  background-color: #f4f6f8;
+}
+
+/* ===== FILEMAKER OPENEN OP BESTELBON ===== */
+
+.confirm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.confirm-box {
+  background: #fff;
+  padding: 16px;
+  border-radius: 6px;
+  border: 1px solid #9c1c3d;
+  min-width: 260px;
+  text-align: center;
+}
+
+.confirm-title {
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.confirm-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Loading */
+
+.bestellijst-loading-overlay {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  padding-top: 150px;
+  box-sizing: border-box;
+
+  background-color: rgba(255, 255, 255, 0.65);
+
+  z-index: 9999;
+}
+
+.bestellijst-loading-overlay img {
+  opacity: 0.8;
+  pointer-events: none;
+}

@@ -1,7 +1,7 @@
 // backend/src/services/futureService.ts
 
 import {
-    findLayoutRecords
+  findLayoutRecords
 } from '../config/filemaker';
 
 
@@ -9,27 +9,27 @@ const DOSSIER_LAYOUT = 'WEBDOSSIERS';
 
 
 export async function listDossiers(
-    token: string
+  token: string
 ) {
 
-    const query = [
-        {
-            flag_web_active_c: '1'
-        }
-    ];
+  const query = [
+    {
+      flag_web_active_c: '1'
+    }
+  ];
 
-    const { records } =
-        await findLayoutRecords(
-            token,
-            DOSSIER_LAYOUT,
-            query,
-            10
-        );
-
-    console.log(
-        'FILEMAKER RECORDS:',
-        records.length
+  const { records } =
+    await findLayoutRecords(
+      token,
+      DOSSIER_LAYOUT,
+      query,
+      10
     );
 
-    return records;
+  console.log(
+    'FILEMAKER RECORDS:',
+    records.length
+  );
+
+  return records;
 }
