@@ -207,6 +207,21 @@
   cursor: pointer;
 }
 
+/* Status: geleverd. */
+.bestellijst-status-geleverd {
+  background-color: #d9eadb;
+}
+
+/* Status: vandaag. */
+.bestellijst-status-vandaag {
+  background-color: #dceaf7;
+}
+
+/* Status: te laat. */
+.bestellijst-status-te-laat {
+  background-color: #f7dfc5;
+}
+
 /* Status en datum centreren. */
 .bestellijst-table th:nth-child(3),
 .bestellijst-table td:nth-child(3),
@@ -217,7 +232,7 @@
 
 /* Afwisselende kleuren tabelrijen. */
 .bestellijst-table tbody tr:nth-child(odd) {
-  background-color: #edf4ef;
+  background-color: #fff;
 }
 
 .bestellijst-table tbody tr:nth-child(even) {

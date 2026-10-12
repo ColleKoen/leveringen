@@ -16,8 +16,6 @@ router.get('/', fileMakerAuth,
       console.log('BESTELLIJST REQUEST');
       const bestellingen = await reconnectFM(req, (token) => listBestellingen(token));
 
-      console.log('BESTELLIJST:', bestellingen.length);
-
       return res.json({ ok: true, bestellingen });
 
     }

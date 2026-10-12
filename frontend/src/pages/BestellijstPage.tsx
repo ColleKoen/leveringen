@@ -240,32 +240,38 @@ export default function BestellijstPage({ onLogout }: Props) {
 
         <tbody>
 
-          {filteredBestellingen.map((bestelling) => (
+          {filteredBestellingen.map((bestelling) => {
 
-            <tr key={bestelling.recordId}>
+            const status = getBestellingStatus(bestelling);
 
-              <td>{bestelling.dossiernaam}</td>
+            return (
 
-              <td>{bestelling.leverancier}</td>
+              <tr key={bestelling.recordId}>
 
-              <td>
-                <button
-                  type="button"
-                  className="bestellijst-status-button"
-                  onClick={() => handleStatusClick(bestelling)}
-                  onDoubleClick={() => handleStatusDoubleClick(bestelling)}
-                >
-                  {getBestellingStatus(bestelling)}
-                </button>
-              </td>
+                <td>{bestelling.dossiernaam}</td>
 
-              <td>  {formatDate(parseFMDate(bestelling.leveringsdatum))}</td>
+                <td>{bestelling.leverancier}</td>
 
-              <td>{bestelling.besteldDoor}</td>
+                <td>
+                  <button
+                    type="button"
+                    className={`bestellijst-status-button bestellijst-status-${status.replace(' ', '-')}`}
+                    onClick={() => handleStatusClick(bestelling)}
+                    onDoubleClick={() => handleStatusDoubleClick(bestelling)}
+                  >
+                    {status}
+                  </button>
+                </td>
 
-            </tr>
+                <td>{formatDate(parseFMDate(bestelling.leveringsdatum))}</td>
 
-          ))}
+                <td>{bestelling.besteldDoor}</td>
+
+              </tr>
+
+            );
+
+          })}
 
         </tbody>
 

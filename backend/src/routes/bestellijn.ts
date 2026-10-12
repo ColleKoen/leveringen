@@ -19,17 +19,12 @@ router.get('/', fileMakerAuth, async (req, res) => {
 
     const bestellijnen = await reconnectFM(req, (token) => listBestellijnen(token, bestelLijnenId));
 
-    console.log('BESTELLIJN:', bestellijnen.length);
-
     return res.json({ ok: true, bestellijnen });
 
   }
   catch (err) {
-
     console.error('BESTELLIJN ERROR:', err);
-
     return res.status(500).json({ ok: false, error: 'Server fout' });
-
   }
 }
 );

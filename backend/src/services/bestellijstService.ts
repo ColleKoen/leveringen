@@ -21,8 +21,6 @@ export async function listBestellingen(token: string): Promise<Bestellijst[]> {
   // --> FileMaker.
   const { records } = await findLayoutRecords(token, BESTELLIJST_LAYOUT, query, 5000);
 
-  console.log('BESTELLIJST RECORDS:', records.length);
-
   // Records omzetten.
   const bestellingen: Bestellijst[] = records.map((record: FMRecord) => {
 
