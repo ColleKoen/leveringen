@@ -2,6 +2,7 @@
 
 import '../css/bestellijstpage.css';
 
+import MessagePopup from '../popup/MessagePopup';
 import BestellingPopup from '../popup/BestellingPopup';
 
 import { API_URL } from '../config';
@@ -24,9 +25,10 @@ export default function BestellijstPage({ onLogout }: Props) {
   const [leverancierFilter, setLeverancierFilter] = useState('');
   const [besteldDoorFilter, setBesteldDoorFilter] = useState('');
   const [bestellingen, setBestellingen] = useState<Bestellijst[]>([]);
-  const clickTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [confirmBestelbon, setConfirmBestelbon] = useState<string | null>(null);
   const [selectedBestelling, setSelectedBestelling] = useState<Bestellijst | null>(null);
+
+  const clickTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Laad de bestellingen bij het laden van de pagina.
   useEffect(() => {
@@ -288,31 +290,23 @@ export default function BestellijstPage({ onLogout }: Props) {
 
       {/* BESTELBON OPENEN IN ARNOUT */}
       {confirmBestelbon && (
-        <div className="confirm-overlay">
 
-          <div className="confirm-box">
+        <MessagePopup
+          lines={['Deze bestelling openen in Arnout?']}
+          confirmText="Ja"
+          cancelText="Nee"
 
-            <div className="confirm-title">Deze bestelling openen in Arnout?</div>
+          onConfirm={() => {
+            const url = `fmp://fms.alterexpo.be/Arnout.fmp12?script=Web.003_Open_bestelbon&$bestelID=${encodeURIComponent(confirmBestelbon)}`;
+            window.location.href = url;
+            setConfirmBestelbon(null);
+          }}
 
-            <div className="confirm-actions">
+          onCancel={() => {
+            setConfirmBestelbon(null);
+          }}
+        />
 
-              <button
-                onClick={() => {
-                  const url = `fmp://fms.alterexpo.be/Arnout.fmp12?script=Web.003_Open_bestelbon&$bestelID=${encodeURIComponent(confirmBestelbon)}`;
-                  window.location.href = url;
-                  setConfirmBestelbon(null);
-                }}
-              >
-                Ja
-              </button>
-
-              <button onClick={() => setConfirmBestelbon(null)}>Nee</button>
-
-            </div>
-
-          </div>
-
-        </div>
       )}
 
       {/* LOADING */}

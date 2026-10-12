@@ -2,6 +2,7 @@
 
 import '../css/bestellingpopup.css';
 import { API_URL } from '../config';
+import MessagePopup from '../popup/MessagePopup';
 import { useEffect, useRef, useState } from 'react';
 
 import type { Bestellijst, Bestellijn } from '../types/frontend.types';
@@ -48,6 +49,9 @@ export default function BestellingPopup({ bestelling, onClose, onApplied }: Prop
     };
 
   }, [dragging]);
+
+  // Standaard berichtvenster.
+  const [showMessage, setShowMessage] = useState(false);
 
   // Bestellijnen.
   const [volledigGeleverd, setVolledigGeleverd] = useState(bestelling.volledigGeleverd);
@@ -249,8 +253,11 @@ export default function BestellingPopup({ bestelling, onClose, onApplied }: Prop
               <div className="bestelling-popup-footer">
                 <div className="bestelling-popup-id">{bestelling.bestelLijnenId}</div>
                 <div className="bestelling-popup-actions">
-                  <button type="button" onClick={handleApply}>Toepassen</button>
+
+                  <button type="button" onClick={() => setShowMessage(true)}>Toepassen</button>
+
                   <button type="button" onClick={onClose}>Annuleren</button>
+
                 </div>
               </div>
             )}
@@ -258,6 +265,20 @@ export default function BestellingPopup({ bestelling, onClose, onApplied }: Prop
           </div>
 
         </div>
+      )}
+
+      {/* BESTELBON OPENEN IN ARNOUT */}
+      {showMessage && (
+
+        <MessagePopup
+          lines={['Deze aanpassing doorsturen naar Arnout?']}
+          confirmText="Ja"
+          cancelText="Nee"
+
+          onConfirm={() => { setShowMessage(false); handleApply(); }}
+          onCancel={() => setShowMessage(false)}
+        />
+
       )}
 
     </div>
