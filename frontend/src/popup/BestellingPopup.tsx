@@ -115,12 +115,8 @@ export default function BestellingPopup({ bestelling, onClose, onApplied }: Prop
       const sessionId = localStorage.getItem('sessionId');
 
       const payload = {
-        bestellingRecordId: bestelling.recordId,
-        volledigGeleverd,
-        bestellijnen: bestellijnen.map((bestellijn) => ({
-          recordId: bestellijn.recordId,
-          geleverd: bestellijn.geleverd
-        }))
+        bestellingRecordId: bestelling.recordId, volledigGeleverd,
+        bestellijnen: bestellijnen.map((bestellijn) => ({ recordId: bestellijn.recordId, geleverd: bestellijn.geleverd }))
       };
 
       const response = await fetch(`${API_URL}/api/update`, { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${sessionId}` }, body: JSON.stringify(payload) });
@@ -148,18 +144,12 @@ export default function BestellingPopup({ bestelling, onClose, onApplied }: Prop
     <div className="bestelling-popup-overlay">
 
       {!loading && (
-        <div
-          ref={popupRef}
-          className="bestelling-popup"
-          style={{ left: position.x, top: position.y }}
-        >
+        <div ref={popupRef} className="bestelling-popup" style={{ left: position.x, top: position.y }}>
 
           {/* Titelbalk */}
           <div className="bestelling-popup-header" onMouseDown={handleMouseDown}>
-
             <div className="bestelling-popup-title">Leveringen magazijn</div>
             <button type="button" className="bestelling-popup-close" onMouseDown={(e) => e.stopPropagation()} onClick={onClose}>✕</button>
-
           </div>
 
           {/* Inhoud */}
@@ -192,9 +182,7 @@ export default function BestellingPopup({ bestelling, onClose, onApplied }: Prop
             {/* Volledig geleverd */}
             <div className="bestelling-popup-volledig">
 
-              <div className="bestelling-popup-volledig-label">
-                volledig geleverd
-              </div>
+              <div className="bestelling-popup-volledig-label">volledig geleverd</div>
 
               <div className="bestelling-popup-volledig-checkbox">
                 <input
@@ -206,14 +194,9 @@ export default function BestellingPopup({ bestelling, onClose, onApplied }: Prop
 
             </div>
 
-
             {/* Bestellijnen */}
 
-            {error && (
-              <div className="bestelling-popup-message">
-                {error}
-              </div>
-            )}
+            {error && (<div className="bestelling-popup-message"> {error} </div>)}
 
             {!loading && !error && (
 
@@ -240,28 +223,15 @@ export default function BestellingPopup({ bestelling, onClose, onApplied }: Prop
                     {bestellijnen.map((bestellijn) => (
 
                       <tr key={bestellijn.recordId}>
-
-                        <td>
-                          {bestellijn.omschrijving}
-                        </td>
-
-                        <td className="bestelling-popup-aantal">
-                          {bestellijn.aantal}
-                        </td>
-
+                        <td>{bestellijn.omschrijving}</td>
+                        <td className="bestelling-popup-aantal">{bestellijn.aantal}</td>
                         <td className="bestelling-popup-geleverd">
                           <input
                             type="checkbox"
                             checked={bestellijn.geleverd}
-                            onChange={(e) =>
-                              handleBestellijnGeleverd(
-                                bestellijn.recordId,
-                                e.target.checked
-                              )
-                            }
+                            onChange={(e) => handleBestellijnGeleverd(bestellijn.recordId, e.target.checked)}
                           />
                         </td>
-
                       </tr>
 
                     ))}
@@ -277,23 +247,11 @@ export default function BestellingPopup({ bestelling, onClose, onApplied }: Prop
             {/* Onderste rij */}
             {!loading && !error && (
               <div className="bestelling-popup-footer">
-
-                <div className="bestelling-popup-id">
-                  {bestelling.bestelLijnenId}
-                </div>
-
+                <div className="bestelling-popup-id">{bestelling.bestelLijnenId}</div>
                 <div className="bestelling-popup-actions">
-
-                  <button type="button" onClick={handleApply}>
-                    Toepassen
-                  </button>
-
-                  <button type="button" onClick={onClose}>
-                    Annuleren
-                  </button>
-
+                  <button type="button" onClick={handleApply}>Toepassen</button>
+                  <button type="button" onClick={onClose}>Annuleren</button>
                 </div>
-
               </div>
             )}
 
@@ -301,6 +259,7 @@ export default function BestellingPopup({ bestelling, onClose, onApplied }: Prop
 
         </div>
       )}
+
     </div>
   );
 }

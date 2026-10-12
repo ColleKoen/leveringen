@@ -47,15 +47,11 @@ export default function LoginPage({ onLogin }: Props) {
 
     }
     catch (err) {
-
       console.error('Login fout:', err);
       setError('Kan geen verbinding maken met de server');
-
     }
     finally {
-
       setLoading(false);
-
     }
   }
 
@@ -110,11 +106,7 @@ export default function LoginPage({ onLogin }: Props) {
           {loading ? 'Aanmelden...' : 'Aanmelden'}
         </button>
 
-        {error && (
-          <div className="login-error">
-            {error}
-          </div>
-        )}
+        {error && (<div className="login-error"> {error} </div>)}
 
       </form>
 
