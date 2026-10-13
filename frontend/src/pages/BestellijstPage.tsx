@@ -123,13 +123,32 @@ export default function BestellijstPage({ onLogout }: Props) {
     );
   }
 
+  // Unieke leveranciers voor de pulldown.
+  const leveranciers = [
+    ...new Set(
+      bestellingen
+        .map((bestelling) => bestelling.leverancier)
+        .filter((leverancier) => leverancier)
+    )
+  ].sort((a, b) => a.localeCompare(b));
+
+
+  // Unieke personen voor de pulldown.
+  const besteldDoorPersonen = [
+    ...new Set(
+      bestellingen
+        .map((bestelling) => bestelling.besteldDoor)
+        .filter((besteldDoor) => besteldDoor)
+    )
+  ].sort((a, b) => a.localeCompare(b));
+
   // Filter de bestellingen op basis van de zoekcriteria.
   const filteredBestellingen = bestellingen.filter((bestelling) => {
 
     const dossierMatch = bestelling.dossiernaam.toLowerCase().includes(dossierFilter.toLowerCase());
-    const leverancierMatch = bestelling.leverancier.toLowerCase().includes(leverancierFilter.toLowerCase());
+    const leverancierMatch = !leverancierFilter || bestelling.leverancier === leverancierFilter;
     const statusMatch = !statusFilter || getBestellingStatus(bestelling) === statusFilter;
-    const besteldDoorMatch = bestelling.besteldDoor.toLowerCase().includes(besteldDoorFilter.toLowerCase());
+    const besteldDoorMatch = !besteldDoorFilter || bestelling.besteldDoor === besteldDoorFilter;
 
     return (dossierMatch && leverancierMatch && statusMatch && besteldDoorMatch);
   });
@@ -181,12 +200,22 @@ export default function BestellijstPage({ onLogout }: Props) {
           </div>
 
           <div className="bestellijst-filter">
-            <input
-              type="text"
-              placeholder="leverancier zoeken"
+            <select
               value={leverancierFilter}
               onChange={(e) => setLeverancierFilter(e.target.value)}
-            />
+            >
+              <option value=""></option>
+
+              {leveranciers.map((leverancier) => (
+                <option
+                  key={leverancier}
+                  value={leverancier}
+                >
+                  {leverancier}
+                </option>
+              ))}
+
+            </select>
           </div>
 
           <div className="bestellijst-status-filter">
@@ -207,12 +236,22 @@ export default function BestellijstPage({ onLogout }: Props) {
           <div>Levering</div>
 
           <div className="bestellijst-filter">
-            <input
-              type="text"
-              placeholder="besteld door zoeken"
+            <select
               value={besteldDoorFilter}
               onChange={(e) => setBesteldDoorFilter(e.target.value)}
-            />
+            >
+              <option value=""></option>
+
+              {besteldDoorPersonen.map((besteldDoor) => (
+                <option
+                  key={besteldDoor}
+                  value={besteldDoor}
+                >
+                  {besteldDoor}
+                </option>
+              ))}
+
+            </select>
           </div>
 
         </div>
@@ -226,8 +265,8 @@ export default function BestellijstPage({ onLogout }: Props) {
           <col style={{ width: '39%' }} />
           <col style={{ width: '22%' }} />
           <col style={{ width: '11%' }} />
-          <col style={{ width: '10%' }} />
-          <col style={{ width: '18%' }} />
+          <col style={{ width: '110px' }} />
+          <col />
         </colgroup>
 
         <thead>
